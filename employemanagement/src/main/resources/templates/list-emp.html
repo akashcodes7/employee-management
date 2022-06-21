@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        a {
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(124, 49, 49);
+        }
+
+        a:hover {
+            color: rgb(127, 127, 42)
+            
+        }
+        .hoverbutton:hover {
+            color: rgb(255, 255, 255);
+            background-color: rgb(178, 110, 110);
+        }
+
+        .hoverbutton {
+            color: rgb(255, 255, 255);
+            background-color: rgb(139, 57, 57);
+            text-decoration: none;
+            padding: 10px;
+            
+            border: 1px solid rgb(157, 98, 98);
+        }
+        .container {
+            padding-left: 220px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            text-decoration: none;
+            padding-bottom: 10px;
+        }
+        #employees {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        #employees td,
+        #employees th {
+            border: 1px solid rgb(96, 85, 85);
+            padding: 8px;
+        }
+
+        #employees tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #employees tr:hover {
+            background-color: #ddd;
+        }
+
+        #employees th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #875050;
+            color: white;
+        }
+        .maindiv{
+            margin-left: 220px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="container">
+            <h2 style="display: flex; margin-left:420px;">List Employees</h2>
+            <a class="hoverbutton" th:href="@{'/add-emp'}">Add-Employee</a>
+            <a  class="hoverbutton" th:href="@{'/'}">Goto HomePage</a>
+        </div>
+        <hr>
+        <div class="maindiv">
+            <table width="50%" id="employees">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Department</th>
+                        <th>SubDepartment</th>
+                        <th>Actions</th>
+                    </tr> 
+                </thead>
+                <tbody> 
+                    <tr th:each="employee: ${employees}">
+                        <td th:text="${employee.employeeID}"></td>
+                        <td th:text="${employee.firstName}"></td>
+                        <td th:text="${employee.lastName}"></td>
+                        <td th:text="${employee?.department.department_Name}"></td>
+                        <td th:text="${employee.emp_sub_department}"></td>
+                        <td>
+                            <a th:href="@{/employee/delete/{id}(id=${employee.employeeID})}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>

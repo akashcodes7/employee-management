@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      .hoverbutton:hover {
+        color:rgb(255, 255, 255);
+        background-color: rgb(148, 77, 77);
+      }
+      .hoverbutton{
+        color:rgb(255, 255, 255);
+        background-color: rgb(105, 53, 53);
+        
+        text-decoration:none;
+        padding: 10px;
+        margin-left: 10px;
+        border: 1px solid rgb(157, 98, 98);
+      }
+      .div{
+        margin-top: 100px;
+        text-align:center; 
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size:26px; 
+        text-decoration:none
+      }
+      .header_div{
+        
+          text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header_div">
+      <h2 style="text-align:center; color:rgb(110, 71, 71); ">WELCOME</h2>
+      
+      <h3 style="text-align:center; color:rgb(181, 114, 114);">Employee Managment</h3>
+
+      <hr>
+      <div>
+          <div class="div">
+            <a class="hoverbutton"  th:href="@{'/employees'}">Navigate to Employee section</a>
+            <a class="hoverbutton"  th:href="@{'/departments'}">Navigate to Department section</a>
+          </div>
+      </div>
+  </div>
+  </body>
+</html>

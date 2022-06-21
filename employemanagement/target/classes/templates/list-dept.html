@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hoverbutton:hover {
+            color: rgb(255, 255, 255);
+            background-color: rgb(178, 110, 110);
+        }
+
+        a {
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(124, 49, 49);
+        }
+
+        a:hover {
+            color: rgb(127, 127, 42)
+        }
+
+        .hoverbutton {
+            color: rgb(255, 255, 255);
+            background-color: rgb(139, 57, 57);
+            text-decoration: none;
+            padding: 10px;
+
+            border: 1px solid rgb(157, 98, 98);
+        }
+
+        .container {
+            padding-left: 220px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            text-decoration: none;
+            padding-bottom: 10px;
+        }
+
+        #employees {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        #employees td,
+        #employees th {
+            border: 1px solid rgb(96, 85, 85);
+            padding: 8px;
+        }
+
+        #employees tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #employees tr:hover {
+            background-color: #ddd;
+        }
+
+        #employees th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #875050;
+            color: white;
+        }
+
+        .maindiv {
+            margin-left: 220px;
+        }
+        .subdept_td{
+            padding: inherit;
+            color: rgb(70, 23, 23);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="container">
+            <h2 style="display: flex; margin-left:420px;">List Departments</h2>
+            <a class="hoverbutton" th:href="@{'/add-dept'}">Add-Department</a>
+            <a class="hoverbutton" th:href="@{'/dept/sub-dept'}">Manage-SubDepartments</a>
+            <a class="hoverbutton" th:href="@{'/dept/sub-dept/add'}">Add SubDepartments</a>
+            <a class="hoverbutton" th:href="@{'/'}">Goto HomePage</a>
+        </div>
+        <hr>
+        <div class="maindiv">
+            <table width="50%" border="1" cellspacing="2" id="employees">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Department Name</th>
+                        <th>Short Name</th>
+                        <th>Sub Departments</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dept: ${departments}">
+                        <td th:text="${dept.department_ID}"></td>
+                        <td th:text="${dept.department_Name}"></td>
+                        <td th:text="${dept.short_Name}"></td>
+                        <td class="subdept_td">
+                            <ul style="list-style-type: none;padding: 0px;margin: 0px;" th:each="value: ${dept?.subdepartments}" >
+                                <li  th:text="${value.sub_department_name}"></li>
+                            </ul>
+                        </td>
+                        
+                        <td>
+                            <a th:href="@{/department/delete/{id}(id=${dept.department_ID})}">Delete</a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
